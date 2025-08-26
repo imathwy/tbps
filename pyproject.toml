@@ -1,0 +1,13 @@
+[project]
+name = "tbps"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.2.6",
+    "psycopg2-binary>=2.9.10",
+    "scikit-learn>=1.6.1",
+    "tqdm>=4.67.1",
+    "zss>=1.2.0",
+]
