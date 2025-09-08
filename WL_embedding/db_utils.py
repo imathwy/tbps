@@ -2,11 +2,12 @@
 import psycopg2
 import json
 
+# PostgreSQL 配置信息
 DB_CONFIG = {
     "host": "localhost",
     "port": 5432,
     "database": "postgres",
-    "user": "user",
+    "user": "princhern"
 }
 
 

@@ -139,7 +139,6 @@ def zss_edit_distance_TreeNode(tree1: TreeNode, tree2: TreeNode) -> int:
         insert_cost=lambda node: (
             0.2 if node.label.startswith(zero_cost_label_prefixes) else 1
         ),
-        # remove_cost=lambda node: 1,
         remove_cost=lambda node: (
             0.2 if node.label.startswith(zero_cost_label_prefixes) else 1
         ),

@@ -91,7 +91,7 @@ def compute_wl_score_new(
         # print(wl_encoding)
         wl_score = compute_wl_kernel(target_encoding, wl_encoding)
         s = can_t1_collapse_match_t2_soft(simptree, thmtree)
-        alpha = 0.5
+        alpha = 1
         wl_score = alpha * wl_score + (1 - alpha) * s
         # print(wl_score)
         return (name, wl_score)
@@ -108,9 +108,9 @@ def load_filtered_theorems(
     node_diff: int = 25,  # 15
     batch_size: int = 50000,
     top_k: int = 3000,
-    n_closest_clusters: int = 2250,
+    n_closest_clusters: int = 5500,
     use_clustering: bool = True,
-    wl_iterations: int = 80,  # New parameter: Number of WL iterations
+    wl_iterations: int = 5,  # New parameter: Number of WL iterations
     debug: bool = False,
 ):
     """
@@ -247,6 +247,7 @@ def load_filtered_theorems(
                     JOIN wl_encodings_new AS w ON d.name = w.theorem_name
                     WHERE d.expr_cse_json != 'null'
                     AND d.simp_node_count BETWEEN %s AND %s
+                    ORDER BY d.name
                     LIMIT %s OFFSET %s
                 """,
                     (min_nodes, max_nodes, batch_size, offset),
