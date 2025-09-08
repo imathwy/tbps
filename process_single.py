@@ -106,18 +106,18 @@ def process_theorem(
     try:
         if target_size > 50 :
             alpha, gamma, delta = 0.15, 0.30, 0.15
-            similarity = alpha * wl_score + gamma * syntactic_similarity + delta * const_decl_name_similarity(target_tree, theorem_tree) 
+            similarity = alpha * wl_score + gamma * syntactic_similarity + delta * const_decl_name_similarity(target_tree, theorem_tree)
             return (theorem_name, similarity, wl_score)
-        distance = zss_edit_distance_TreeNode(target_tree, theorem_tree)       
+        distance = zss_edit_distance_TreeNode(target_tree, theorem_tree)
         if distance == float('inf'):
             return None
-        
+
         max_size = max(target_size, theorem_size)
         similarity = 1 - (distance / max_size) if max_size > 0 else 0.0
         alpha, beta, gamma, delta = 0.15, 0.40, 0.30, 0.15
-    
-        similarity = alpha * wl_score + beta * similarity + gamma * syntactic_similarity + delta * const_decl_name_similarity(target_tree, theorem_tree); 
-        
+
+        similarity = alpha * wl_score + beta * similarity + gamma * syntactic_similarity + delta * const_decl_name_similarity(target_tree, theorem_tree)
+
         return (theorem_name, similarity, wl_score)
     except Exception as e:
         print(f"Error)) processing {theorem_name}: {e}")
@@ -342,8 +342,7 @@ def fetch_theorem_details(conn, name: str) -> Tuple[Optional[str], Optional[int]
     except psycopg2.Error as e:
         print(f"Database error for theorem {name}: {e}")
         return None, None
-    
-def process_single_prop_new(target_expr: YourExpr, k: int) -> List[Tuple[str, float, str, int]]:
+def process_single_prop_new(target_expr: YourExpr, k: int) -> list[tuple[str, float, str, int]]:
     """Process a single proposition and return top k theorems with similarities."""
 
     # Precompute target-related values
