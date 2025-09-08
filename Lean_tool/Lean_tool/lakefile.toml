@@ -1,0 +1,15 @@
+name = "Lean_tool"
+version = "0.1.0"
+defaultTargets = ["Mathlib_Construction"]
+
+[[lean_lib]]
+name = "LeanTool"
+
+[[dependencies]]
+Qq = { git = "https://github.com/leanprover-community/qq.git", rev = "master" }
+
+[[lean_exe]]
+name = "Mathlib_Construction"
+root = "Mathlib_Construction" 
+srcDir = "."
+
