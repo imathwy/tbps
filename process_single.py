@@ -16,7 +16,7 @@ from compute.zss_compute import (
     const_decl_name_similarity,
     can_t1_collapse_match_t2_soft,
 )
-from WL.db_utils import load_filtered_theorems, DB_CONFIG
+from WL.db_utils import load_filtered_theorems, connect_to_db, DB_CONFIG
 
 
 def process_candidate(
@@ -104,31 +104,20 @@ def process_theorem(
     theorem_name, theorem_tree, theorem_size, wl_score, syntactic_similarity = data
 
     try:
-        alpha = 0.2
-        beta = 0.2
-        gamma = 0.5
-
-        if target_size > 50:
-            alpha = 0.9
-            similarity = alpha * wl_score + (1 - alpha) * const_decl_name_similarity(
-                target_tree, theorem_tree
-            )
-            similarity = gamma * similarity + (1 - gamma) * syntactic_similarity
+        if target_size > 50 :
+            alpha, gamma, delta = 0.15, 0.30, 0.15
+            similarity = alpha * wl_score + gamma * syntactic_similarity + delta * const_decl_name_similarity(target_tree, theorem_tree) 
             return (theorem_name, similarity, wl_score)
-        distance = zss_edit_distance_TreeNode(target_tree, theorem_tree)
-
-        if distance == float("inf"):
+        distance = zss_edit_distance_TreeNode(target_tree, theorem_tree)       
+        if distance == float('inf'):
             return None
-
+        
         max_size = max(target_size, theorem_size)
         similarity = 1 - (distance / max_size) if max_size > 0 else 0.0
-        similarity = (
-            alpha * wl_score
-            + beta * const_decl_name_similarity(target_tree, theorem_tree)
-            + (1 - alpha - beta) * similarity
-        )
-
-        similarity = gamma * similarity + (1 - gamma) * syntactic_similarity
+        alpha, beta, gamma, delta = 0.15, 0.40, 0.30, 0.15
+    
+        similarity = alpha * wl_score + beta * similarity + gamma * syntactic_similarity + delta * const_decl_name_similarity(target_tree, theorem_tree); 
+        
         return (theorem_name, similarity, wl_score)
     except Exception as e:
         print(f"Error)) processing {theorem_name}: {e}")
@@ -339,3 +328,90 @@ def process_single_prop(target_name: str, target_expr: YourExpr, output_file: st
         return top_k
 
     return target_rank
+
+def fetch_theorem_details(conn, name: str) -> Tuple[Optional[str], Optional[int]]:
+    """Fetch statement_str and node_count for a given theorem name from the database."""
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT statement_str, node_count FROM mathlib_filtered WHERE name = %s",
+                (name,)
+            )
+            result = cur.fetchone()
+            return result if result else (None, None)
+    except psycopg2.Error as e:
+        print(f"Database error for theorem {name}: {e}")
+        return None, None
+    
+def process_single_prop_new(target_expr: YourExpr, k: int) -> list[tuple[str, float]]:
+    """Process a single proposition and return top k theorems with similarities."""
+
+    # Precompute target-related values
+    target_tree = your_expr_to_treenode(target_expr)
+    target_node_count = count_nodes(target_tree)
+    top_k = 1500  # Use provided k value
+
+    # Adjust node ratio based on node count
+    node_ratio = 1.2
+    if target_node_count >= 600:
+        node_ratio = 1.8
+
+    # Load filtered theorems with WL scores
+    filtered_results, wl_stats = load_filtered_theorems(
+        target_name="",  # No target name needed for ranking
+        database_name="mathlib_filtered",
+        target_expr=target_expr,
+        node_ratio=node_ratio,
+        batch_size=90000,
+        top_k=top_k,
+        use_clustering=False,
+        wl_iterations=3,
+        debug=False,
+    )
+    if wl_stats == False:
+        return []
+
+    # Simplify expression and precompute candidates
+    simptree = simplify_forall_expr_iter(target_expr)
+    precomputed_candidates = precompute_candidates(
+        filtered_results, your_expr_to_treenode(simptree)
+    )
+
+    # Parallel computation of edit similarities
+    results = []
+    target_tree = your_expr_to_treenode(simptree)
+    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
+        future_to_name = {
+            executor.submit(
+                process_theorem, data, target_tree, target_node_count
+            ): data[0]
+            for data in precomputed_candidates
+        }
+        for future in tqdm(
+            concurrent.futures.as_completed(future_to_name),
+            total=len(future_to_name),
+            desc="Processing theorems",
+            unit="thm",
+        ):
+            result = future.result()
+            if result is not None:
+                results.append(result)
+
+    # Sort results by similarity (descending)
+    results.sort(key=lambda x: x[1], reverse=True)
+
+    # Extract top k results (name, similarity)
+    top_k_results = []
+    conn = connect_to_db()
+    try:
+        for name, similarity, _ in results[:k]:
+            statement_str, node_count = fetch_theorem_details(conn, name)
+            # Only include results with valid database entries
+            if statement_str is not None and node_count is not None:
+                top_k_results.append((name, similarity, statement_str, node_count))
+            else:
+                print(f"Warning: Could not fetch details for theorem {name}")
+    finally:
+        conn.close()
+
+    return top_k_results
