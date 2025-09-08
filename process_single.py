@@ -343,7 +343,7 @@ def fetch_theorem_details(conn, name: str) -> Tuple[Optional[str], Optional[int]
         print(f"Database error for theorem {name}: {e}")
         return None, None
     
-def process_single_prop_new(target_expr: YourExpr, k: int) -> list[tuple[str, float]]:
+def process_single_prop_new(target_expr: YourExpr, k: int) -> List[Tuple[str, float, str, int]]:
     """Process a single proposition and return top k theorems with similarities."""
 
     # Precompute target-related values
