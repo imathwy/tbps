@@ -68,10 +68,10 @@ const searchSchema = z.object({
 type SearchFormData = z.infer<typeof searchSchema>;
 
 interface TheoremSearchProps {
-  selectedServer: ServerType;
+  serverType: ServerType;
 }
 
-export function TheoremSearch({ selectedServer }: TheoremSearchProps) {
+export function TheoremSearch({ serverType }: TheoremSearchProps) {
   const [results, setResults] = useState<SimilarTheoremsResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -91,7 +91,7 @@ export function TheoremSearch({ selectedServer }: TheoremSearchProps) {
     setResults(null);
 
     try {
-      const api = new TheoremSearchAPI(selectedServer);
+      const api = new TheoremSearchAPI(serverType);
       const response = await api.findSimilarTheorems({
         expression: data.expression,
         k: data.k,

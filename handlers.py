@@ -117,30 +117,30 @@ class MockHandler:
     """Mock handler that returns simulated data without external dependencies."""
 
     def __init__(self):
-        self.version = "1.0.0-mock"
+        self.version = "1.0.0-test"
         self.mock_theorem_names = [
             "Nat.add_comm", "Nat.mul_comm", "Nat.add_assoc", "Nat.mul_assoc",
-            "list.length_append", "list.reverse_reverse", "Set.union_comm", "Set.inter_comm",
+            "List.length_append", "List.reverse_reverse", "Set.union_comm", "Set.inter_comm",
             "Function.comp_assoc", "Finset.card_union", "Real.add_comm", "Real.mul_comm",
-            "Int.add_comm", "Int.mul_comm", "Vector.cons_head_tail", "Matrix.mul_assoc",
-            "Group.mul_assoc", "Ring.add_comm", "Field.div_self", "Topology.continuous_comp",
-            "Measure.measure_union", "Probability.prob_union", "Analysis.derivative_add",
-            "LinearAlgebra.basis_span", "Category.comp_assoc", "Logic.and_comm",
-            "Logic.or_comm", "Logic.not_not", "Set.subset_union_left", "Fintype.card_subset"
+            "Int.add_comm", "Int.mul_comm", "Vector.append_cons", "Matrix.mul_assoc",
+            "Group.mul_assoc", "Ring.add_comm", "Field.mul_inv_cancel", "Topology.isOpen_compl_iff",
+            "MeasureTheory.measure_union", "Probability.indep_comm", "DifferentialGeometry.contDiff_add",
+            "LinearAlgebra.span_union", "CategoryTheory.comp_assoc", "Prop.and_comm",
+            "Prop.or_comm", "Classical.not_not", "Set.subset_union_left", "Fintype.card_le_of_injective"
         ]
 
         self.mock_statements = [
             "∀ (a b : Nat), a + b = b + a",
             "∀ (a b : Nat), a * b = b * a",
             "∀ (a b c : Nat), (a + b) + c = a + (b + c)",
-            "∀ (l₁ l₂ : list α), list.length (l₁ ++ l₂) = list.length l₁ + list.length l₂",
+            "∀ (l₁ l₂ : List α), List.length (l₁ ++ l₂) = List.length l₁ + List.length l₂",
             "∀ (A B : Set α), A ∪ B = B ∪ A",
             "∀ (f g h : α → β → γ), (f ∘ g) ∘ h = f ∘ (g ∘ h)",
             "∀ (s t : Finset α), s.card + t.card = (s ∪ t).card + (s ∩ t).card",
             "∀ (x y : ℝ), x + y = y + x",
             "∀ (G : Type) [Group G] (a b c : G), (a * b) * c = a * (b * c)",
             "∀ (R : Type) [Ring R] (a b : R), a + b = b + a",
-            "∀ (l : list α), list.reverse (list.reverse l) = l",
+            "∀ (l : List α), List.reverse (List.reverse l) = l",
             "∀ (A B : Set α), A ∩ B = B ∩ A",
             "∀ (p q : Prop), p ∧ q ↔ q ∧ p",
             "∀ (p q : Prop), p ∨ q ↔ q ∨ p",
