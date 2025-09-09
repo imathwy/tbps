@@ -146,4 +146,12 @@ export const EXAMPLE_EXPRESSIONS = [
     name: "Group Multiplication Associativity",
     expression: "∀ (G : Type) [Group G] (a b c : G), (a * b) * c = a * (b * c)",
   },
+  {
+    name: "List Reverse Involutive",
+    expression: "∀ (l : List α), List.reverse (List.reverse l) = l",
+  },
+  {
+    name: "Set Intersection Commutativity",
+    expression: "∀ (A B : Set α), A ∩ B = B ∩ A",
+  },
 ];
