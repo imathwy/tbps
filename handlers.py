@@ -204,7 +204,7 @@ class MockHandler:
         results = self._generate_mock_results(expression, k)
 
         # Mock parsed expression
-        mock_parsed = f"Mock parsed: {expression[:50]}{'...' if len(expression) > 50 else ''}"
+        mock_parsed = f"parsed: {expression[:50]}{'...' if len(expression) > 50 else ''}"
 
         return results, mock_parsed
 
