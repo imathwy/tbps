@@ -1,0 +1,87 @@
+{"your_expr":
+ {"forallE":
+  {"body":
+   {"forallE":
+    {"body":
+     {"app":
+      {"fn":
+       {"app":
+        {"fn":
+         {"app":
+          {"fn":
+           {"const":
+            {"us": ["Lean.Level.succ (Lean.Level.zero)"], "declName": "Eq"}},
+           "arg": {"const": {"us": [], "declName": "Nat"}}}},
+         "arg":
+         {"app":
+          {"fn":
+           {"app":
+            {"fn":
+             {"app":
+              {"fn":
+               {"app":
+                {"fn":
+                 {"app":
+                  {"fn":
+                   {"app":
+                    {"fn":
+                     {"const":
+                      {"us":
+                       ["Lean.Level.zero",
+                        "Lean.Level.zero",
+                        "Lean.Level.zero"],
+                       "declName": "HAdd.hAdd"}},
+                     "arg": {"const": {"us": [], "declName": "Nat"}}}},
+                   "arg": {"const": {"us": [], "declName": "Nat"}}}},
+                 "arg": {"const": {"us": [], "declName": "Nat"}}}},
+               "arg":
+               {"app":
+                {"fn":
+                 {"app":
+                  {"fn":
+                   {"const":
+                    {"us": ["Lean.Level.zero"], "declName": "instHAdd"}},
+                   "arg": {"const": {"us": [], "declName": "Nat"}}}},
+                 "arg": {"const": {"us": [], "declName": "instAddNat"}}}}}},
+             "arg": {"bvar": {"deBruijnIndex": 1}}}},
+           "arg": {"bvar": {"deBruijnIndex": 0}}}}}},
+       "arg":
+       {"app":
+        {"fn":
+         {"app":
+          {"fn":
+           {"app":
+            {"fn":
+             {"app":
+              {"fn":
+               {"app":
+                {"fn":
+                 {"app":
+                  {"fn":
+                   {"const":
+                    {"us":
+                     ["Lean.Level.zero", "Lean.Level.zero", "Lean.Level.zero"],
+                     "declName": "HAdd.hAdd"}},
+                   "arg": {"const": {"us": [], "declName": "Nat"}}}},
+                 "arg": {"const": {"us": [], "declName": "Nat"}}}},
+               "arg": {"const": {"us": [], "declName": "Nat"}}}},
+             "arg":
+             {"app":
+              {"fn":
+               {"app":
+                {"fn":
+                 {"const": {"us": ["Lean.Level.zero"], "declName": "instHAdd"}},
+                 "arg": {"const": {"us": [], "declName": "Nat"}}}},
+               "arg": {"const": {"us": [], "declName": "instAddNat"}}}}}},
+           "arg": {"bvar": {"deBruijnIndex": 0}}}},
+         "arg": {"bvar": {"deBruijnIndex": 1}}}}}},
+     "binderType": {"const": {"us": [], "declName": "Nat"}},
+     "binderName": "b",
+     "binderInfo": "Lean.BinderInfo.default"}},
+   "binderType": {"const": {"us": [], "declName": "Nat"}},
+   "binderName": "a",
+   "binderInfo": "Lean.BinderInfo.default"}},
+ "input_str": "forall (a b : Nat), a + b = b + a",
+ "expr_dbg":
+ "forall (a : Nat) (b : Nat), Eq.{1} Nat (HAdd.hAdd.{0, 0, 0} Nat Nat Nat (instHAdd.{0} Nat instAddNat) a b) (HAdd.hAdd.{0, 0, 0} Nat Nat Nat (instHAdd.{0} Nat instAddNat) b a)",
+ "expr_cse_json": null}

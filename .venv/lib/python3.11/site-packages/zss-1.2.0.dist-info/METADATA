@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: zss
+Version: 1.2.0
+Summary: Tree edit distance using the Zhang Shasha algorithm
+Home-page: https://www.github.com/timtadh/zhang-shasha
+Author: Tim Henderson
+Author-email: tim.tadh@gmail.com
+Requires: editdistance
+Requires: numpy
+Requires: six
+License-File: LICENSE
+Requires-Dist: six
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires
+Dynamic: requires-dist
+Dynamic: summary
