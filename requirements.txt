@@ -1,0 +1,4 @@
+psycopg2-binary==2.9.10
+tqdm==4.66.1
+zss==1.2.0
+numpy==1.26.4

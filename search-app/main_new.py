@@ -6,7 +6,7 @@ from myexpr import deserialize_expr
 from cse import cse
 # forall (a b : Nat), a + b = b + a
 # pg_ctl -D /Users/princhern/Documents/structure_search/mathlib4_data start
-PROJECT_ROOT = r"/Users/princhern/Documents/structure_search/TreeSelect/Lean_tool"
+PROJECT_ROOT = r"Lean_tool"
 INPUT_TXT = os.path.join(PROJECT_ROOT, "input_expr.txt")
 OUTPUT_JSON = os.path.join(PROJECT_ROOT, "expr_output.json")
 

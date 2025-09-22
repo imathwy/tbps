@@ -1,5 +1,10 @@
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
-export default function Home() {
-  redirect("/mock");
+// export default function Home() {
+//   redirect("/mock");
+// }
+import { SearchPage } from "@/components/SearchPage";
+
+export default function MockPage() {
+  return <SearchPage serverType="mock" />;
 }
