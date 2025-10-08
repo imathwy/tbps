@@ -2,12 +2,12 @@
 import psycopg2
 import json
 
-# PostgreSQL 配置信息
 DB_CONFIG = {
-    "host": "localhost",
-    "port": 5432,
-    "database": "postgres",
-    "user": "princhern"
+    "host": "127.0.0.1",
+    "port": 8923,
+    "database": "mathlib_db",
+    "user": "postgres",
+    "password": "password"
 }
 
 
@@ -25,10 +25,10 @@ def fetch_theorems_batch(conn, table_name, offset, batch_size):
     try:
         cur = conn.cursor()
         query = f"""
-            SELECT name, expr_cse_json 
-            FROM {table_name} 
-            WHERE expr_cse_json != 'null' 
-            ORDER BY name 
+            SELECT name, expr_cse_json
+            FROM {table_name}
+            WHERE expr_cse_json != 'null'
+            ORDER BY name
             LIMIT %s OFFSET %s
         """
         cur.execute(query, (batch_size, offset))
