@@ -1,5 +1,7 @@
 # Tree-Based Premise Selection for Lean4
 
+This repository contains the implementation of the paper [Tree-Based Premise Selection for Lean4](https://neurips.cc/virtual/2025/poster/116011), presented at NeurIPS 2025.
+
 ## Quick Start
 
 ### Install Docker
