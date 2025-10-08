@@ -14,4 +14,8 @@ pkgs.mkShell {
     pnpm
     biome
   ];
+
+  shellHook = ''
+    git lfs install
+  '';
 }
