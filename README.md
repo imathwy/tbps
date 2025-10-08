@@ -55,6 +55,5 @@ The premise selection tool provides two interfaces: a command-line interface and
 ### Command Line Tool
 
 ```sh
-uv add -r requirements.txt
-uv run search-app/main_new.py
+./scripts/run-cli.sh
 ```
