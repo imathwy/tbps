@@ -1,0 +1,12 @@
+services:
+  postgres:
+    container_name: tbps-postgres
+    image: postgres:17
+    ports:
+      - "8923:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data:rw
+volumes:
+  pgdata:
