@@ -17,5 +17,10 @@ pkgs.mkShell {
 
   shellHook = ''
     git lfs install
+
+    if [ ! -d ".venv" ]; then
+      uv venv
+    fi
+    source .venv/bin/activate
   '';
 }
