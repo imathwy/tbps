@@ -13,6 +13,8 @@ pkgs.mkShell {
     nodejs_24
     pnpm
     biome
+
+    elan
   ];
 
   shellHook = ''

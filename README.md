@@ -47,3 +47,14 @@ git lfs pull
 ```sh
 ./scripts/import-data.sh
 ```
+
+## Usage
+
+The premise selection tool provides two interfaces: a command-line interface and a web GUI.
+
+### Command Line Tool
+
+```sh
+uv add -r requirements.txt
+uv run search-app/main_new.py
+```

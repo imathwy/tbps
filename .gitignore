@@ -4,3 +4,5 @@ venv/
 .vscode
 data/*.sql
 .DS_Store
+Lean_tool/expr_output.json
+Lean_tool/input_expr.txt
