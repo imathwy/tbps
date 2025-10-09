@@ -1,9 +1,9 @@
 import subprocess
 import json
 import os
-from process_single import process_single_prop, process_single_prop_new
-from myexpr import deserialize_expr
-from cse import cse
+from .process_single import process_single_prop, process_single_prop_new
+from .myexpr import deserialize_expr
+from .cse import cse
 # forall (a b : Nat), a + b = b + a
 # pg_ctl -D /Users/princhern/Documents/structure_search/mathlib4_data start
 PROJECT_ROOT = r"Lean_tool"

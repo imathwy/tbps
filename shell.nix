@@ -20,9 +20,11 @@ pkgs.mkShell {
   shellHook = ''
     git lfs install
 
+    cd tbps-be || exit 1
     if [ ! -d ".venv" ]; then
       uv venv
     fi
     source .venv/bin/activate
+    cd ..
   '';
 }

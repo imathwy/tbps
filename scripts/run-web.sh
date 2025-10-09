@@ -2,10 +2,12 @@
 set -eu -o pipefail
 
 ./scripts/build-lean.sh
-uv add -r requirements.txt
 
+cd tbps-be || exit 1
+uv add -r requirements.txt
 uv run main_server.py &
 PID_BE=$!
+cd ..
 
 cd tbps-fe || exit 1
 pnpm i

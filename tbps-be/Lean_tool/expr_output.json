@@ -1,0 +1,77 @@
+{"your_expr":
+ {"app":
+  {"fn":
+   {"app":
+    {"fn":
+     {"app":
+      {"fn":
+       {"const":
+        {"us": ["Lean.Level.succ (Lean.Level.mvar (Lean.Name.mkNum `_uniq 2))"],
+         "declName": "Eq"}},
+       "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 71"}}}},
+     "arg":
+     {"app":
+      {"fn":
+       {"app":
+        {"fn":
+         {"app":
+          {"fn":
+           {"app":
+            {"fn":
+             {"app":
+              {"fn":
+               {"app":
+                {"fn":
+                 {"const":
+                  {"us":
+                   ["Lean.Level.mvar (Lean.Name.mkNum `_uniq 4)",
+                    "Lean.Level.mvar (Lean.Name.mkNum `_uniq 3)",
+                    "Lean.Level.mvar (Lean.Name.mkNum `_uniq 2)"],
+                   "declName": "HAdd.hAdd"}},
+                 "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 61"}}}},
+               "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 62"}}}},
+             "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 71"}}}},
+           "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 64"}}}},
+         "arg":
+         {"app":
+          {"fn":
+           {"app":
+            {"fn":
+             {"app":
+              {"fn":
+               {"const":
+                {"us": ["Lean.Level.mvar (Lean.Name.mkNum `_uniq 4)"],
+                 "declName": "OfNat.ofNat"}},
+               "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 61"}}}},
+             "arg": {"lit": {"literal": "Lean.Literal.natVal 1"}}}},
+           "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 8"}}}}}},
+       "arg":
+       {"app":
+        {"fn":
+         {"app":
+          {"fn":
+           {"app":
+            {"fn":
+             {"const":
+              {"us": ["Lean.Level.mvar (Lean.Name.mkNum `_uniq 3)"],
+               "declName": "OfNat.ofNat"}},
+             "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 62"}}}},
+           "arg": {"lit": {"literal": "Lean.Literal.natVal 1"}}}},
+         "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 19"}}}}}}}},
+   "arg":
+   {"app":
+    {"fn":
+     {"app":
+      {"fn":
+       {"app":
+        {"fn":
+         {"const":
+          {"us": ["Lean.Level.mvar (Lean.Name.mkNum `_uniq 2)"],
+           "declName": "OfNat.ofNat"}},
+         "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 71"}}}},
+       "arg": {"lit": {"literal": "Lean.Literal.natVal 2"}}}},
+     "arg": {"mvar": {"mvarId": "Lean.Name.mkNum `_uniq 40"}}}}}},
+ "input_str": "1 + 1 = 2",
+ "expr_dbg":
+ "Eq.{succ ?_uniq.2} ?_uniq.71 (HAdd.hAdd.{?_uniq.4, ?_uniq.3, ?_uniq.2} ?_uniq.61 ?_uniq.62 ?_uniq.71 ?_uniq.64 (OfNat.ofNat.{?_uniq.4} ?_uniq.61 1 ?_uniq.8) (OfNat.ofNat.{?_uniq.3} ?_uniq.62 1 ?_uniq.19)) (OfNat.ofNat.{?_uniq.2} ?_uniq.71 2 ?_uniq.40)",
+ "expr_cse_json": null}

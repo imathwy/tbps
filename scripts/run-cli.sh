@@ -2,5 +2,7 @@
 set -eu -o pipefail
 
 ./scripts/build-lean.sh
-uv add -r requirements.txt
-uv run search_app/main_new.py
+
+(cd tbps-be && \
+uv add -r requirements.txt && \
+uv run python -m search_app.main_new)
