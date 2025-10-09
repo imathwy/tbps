@@ -13,7 +13,11 @@ jobs:
       - run: |
           nix develop --command git lfs pull
           nix develop --command ./scripts/import-data.sh
+
           count=$(docker exec tbps-postgres psql -U postgres -h 127.0.0.1 -p 5432 -d mathlib_db -t -c "SELECT count(*) FROM mathlib_filtered;")
           [ "$count" -gt 0 ] || exit 1
           count=$(docker exec tbps-postgres psql -U postgres -h 127.0.0.1 -p 5432 -d mathlib_db -t -c "SELECT count(*) FROM wl_encodings_new;")
           [ "$count" -gt 0 ] || exit 1
+
+          nix develop --command ./scripts/run-web.sh &
+          nix develop --command ./scripts/test-curl.sh

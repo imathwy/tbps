@@ -4,6 +4,7 @@ pkgs.mkShell {
     xz
     fd
     git-lfs
+    jq
 
     python311
     uv
