@@ -57,3 +57,11 @@ The premise selection tool provides two interfaces: a command-line interface and
 ```sh
 ./scripts/run-cli.sh
 ```
+
+### Web GUI
+
+```sh
+./scripts/run-web.sh
+```
+
+After starting the service, access the web GUI at <http://localhost:3000/>.
