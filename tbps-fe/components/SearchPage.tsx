@@ -2,7 +2,6 @@
 
 import { TheoremSearch } from "@/components/TheoremSearch";
 import { HealthStatus } from "@/components/HealthStatus";
-import { RouteIndicator } from "@/components/RouteIndicator";
 import { ServerType } from "@/lib/api";
 
 interface SearchPageProps {
@@ -22,9 +21,6 @@ export function SearchPage({ serverType }: SearchPageProps) {
             Find similar theorems using edit distance and Weisfeiler-Leman
             kernels
           </p>
-
-          {/* Route Selection */}
-          <RouteIndicator />
 
           {/* Health Status */}
           <div className="flex justify-center mb-6">
