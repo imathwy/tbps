@@ -3,4 +3,4 @@ set -eu -o pipefail
 
 ./scripts/build-lean.sh
 uv add -r requirements.txt
-uv run search-app/main_new.py
+uv run search_app/main_new.py

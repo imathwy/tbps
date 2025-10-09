@@ -7,14 +7,14 @@ from tqdm import tqdm
 import os
 import logging
 
-from myexpr import deserialize_expr, simplify_forall_expr_iter
-from compute.zss_compute import (
+from search_app.myexpr import deserialize_expr, simplify_forall_expr_iter
+from search_app.compute.zss_compute import (
     your_expr_to_treenode,
     count_nodes,
     can_t1_collapse_match_t2_soft,
 )
-from WL_embedding.wl_kernel import compute_wl_encoding, compute_wl_kernel
-from WL_embedding.db_utils import connect_to_db, DB_CONFIG
+from search_app.WL_embedding.wl_kernel import compute_wl_encoding, compute_wl_kernel
+from search_app.WL_embedding.db_utils import connect_to_db, DB_CONFIG
 
 
 def check_name_in_batch(batch: list, target_name: str) -> bool:
@@ -223,7 +223,7 @@ def load_filtered_theorems(
             if use_clustering:
                 cur.execute(
                     f"""
-                    SELECT d.name, {wl_column}, d.expr_cse_json  
+                    SELECT d.name, {wl_column}, d.expr_cse_json
                     FROM {database_name} AS d
                     JOIN wl_encodings_new AS w ON d.name = w.theorem_name
                     WHERE d.expr_cse_json != 'null'
@@ -242,7 +242,7 @@ def load_filtered_theorems(
             else:
                 cur.execute(
                     f"""
-                    SELECT d.name, {wl_column}, d.expr_cse_json  
+                    SELECT d.name, {wl_column}, d.expr_cse_json
                     FROM {database_name} AS d
                     JOIN wl_encodings_new AS w ON d.name = w.theorem_name
                     WHERE d.expr_cse_json != 'null'
@@ -404,7 +404,7 @@ def check_target_existence(
 
         cur.execute(
             f"""
-            SELECT COUNT(*), 
+            SELECT COUNT(*),
                    EXISTS(SELECT 1 FROM {database_name} WHERE name = %s AND expr_cse_json != 'null'),
                    (SELECT node_count FROM {database_name} WHERE name = %s AND expr_cse_json != 'null')
             FROM {database_name}
@@ -435,7 +435,7 @@ def check_target_existence(
 
         cur.execute(
             f"""
-            SELECT COUNT(*), 
+            SELECT COUNT(*),
                    EXISTS(
                        SELECT 1 FROM {database_name}
                        WHERE name = %s AND expr_cse_json != 'null'

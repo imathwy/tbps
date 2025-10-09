@@ -3,17 +3,17 @@ import json
 import os
 import random
 import asyncio
-from base_server import TheoremHandler, TheoremResult
-from process_single import process_single_prop_new
-from myexpr import deserialize_expr  # pyright: ignore[reportUnknownVariableType]
-from cse import cse
-from WL.db_utils import connect_to_db  # pyright: ignore[reportPrivateLocalImportUsage, reportUnknownVariableType]
+from base_server import TheoremResult
+from search_app.process_single import process_single_prop_new
+from search_app.myexpr import deserialize_expr  # pyright: ignore[reportUnknownVariableType]
+from search_app.cse import cse
+from search_app.WL.db_utils import connect_to_db  # pyright: ignore[reportPrivateLocalImportUsage, reportUnknownVariableType]
 
 class ProductionHandler:
     """Production handler that uses real Lean parsing and database queries."""
 
     def __init__(self):
-        self.PROJECT_ROOT = r"/Users/princhern/Documents/structure_search/TreeSelect/Lean_tool"
+        self.PROJECT_ROOT = r"./Lean_tool"
         self.INPUT_TXT = os.path.join(self.PROJECT_ROOT, "input_expr.txt")
         self.OUTPUT_JSON = os.path.join(self.PROJECT_ROOT, "expr_output.json")
         self.version = "1.0.0"

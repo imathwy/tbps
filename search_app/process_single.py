@@ -7,8 +7,8 @@ from concurrent.futures import ProcessPoolExecutor
 import os
 import csv
 import math
-from myexpr import YourExpr, deserialize_expr, simplify_forall_expr_iter
-from compute.zss_compute import (
+from search_app.myexpr import YourExpr, deserialize_expr, simplify_forall_expr_iter
+from search_app.compute.zss_compute import (
     TreeNode,
     zss_edit_distance_TreeNode,
     your_expr_to_treenode,
@@ -16,7 +16,7 @@ from compute.zss_compute import (
     const_decl_name_similarity,
     can_t1_collapse_match_t2_soft,
 )
-from WL.db_utils import load_filtered_theorems, connect_to_db, DB_CONFIG
+from search_app.WL.db_utils import load_filtered_theorems, connect_to_db, DB_CONFIG
 
 
 def process_candidate(

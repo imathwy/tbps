@@ -1,8 +1,7 @@
-# wl_kernel.py
 import hashlib
 from collections import defaultdict
 from typing import Dict
-from compute.zss_compute import TreeNode, calculate_tree_depth
+from search_app.compute.zss_compute import TreeNode, calculate_tree_depth
 
 
 def initialize_labels_old(tree_node: TreeNode) -> dict[int, str]:

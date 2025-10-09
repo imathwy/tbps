@@ -1,7 +1,7 @@
 from typing import List, Set
 import re
 import zss
-from myexpr import (
+from search_app.myexpr import (
     YourExpr,
     BVar,
     FVar,

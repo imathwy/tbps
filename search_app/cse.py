@@ -1,6 +1,6 @@
 from typing import Dict
 from collections import defaultdict
-from myexpr import (
+from search_app.myexpr import (
     YourExpr,
     BVar,
     FVar,
