@@ -128,11 +128,11 @@ export const EXAMPLE_EXPRESSIONS = [
   {
     name: "List Length Append",
     expression:
-      "∀ (l₁ l₂ : List α), List.length (l₁ ++ l₂) = List.length l₁ + List.length l₂",
+      "∀ (α : Type) (l₁ l₂ : List α), List.length (l₁ ++ l₂) = List.length l₁ + List.length l₂",
   },
   {
     name: "Set Union Commutativity",
-    expression: "∀ (A B : Set α), A ∪ B = B ∪ A",
+      expression: "∀ (α : Type) (A B : Set α), A ∪ B = B ∪ A",
   },
   {
     name: "Function Composition Associativity",
@@ -148,10 +148,10 @@ export const EXAMPLE_EXPRESSIONS = [
   },
   {
     name: "List Reverse Involutive",
-    expression: "∀ (l : List α), List.reverse (List.reverse l) = l",
+      expression: "∀ (α : Type) (l : List α), List.reverse (List.reverse l) = l",
   },
   {
     name: "Set Intersection Commutativity",
-    expression: "∀ (A B : Set α), A ∩ B = B ∩ A",
+      expression: "∀ (α : Type) (A B : Set α), A ∩ B = B ∩ A",
   },
 ];
