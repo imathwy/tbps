@@ -27,5 +27,7 @@ pkgs.mkShell {
     fi
     source .venv/bin/activate
     cd ..
+
+    export LD_LIBRARY_PATH="${pkgs.zlib}/lib:$LD_LIBRARY_PATH"
   '';
 }

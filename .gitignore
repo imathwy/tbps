@@ -7,3 +7,4 @@ data/*.sql
 Lean_tool/expr_output.json
 Lean_tool/input_expr.txt
 .__parse_and_write_tmp.lean
+result

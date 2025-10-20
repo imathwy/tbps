@@ -12,7 +12,8 @@ import {
   Database,
   Server,
 } from "lucide-react";
-import { HealthResponse, ServerType, API_URLS } from "@/lib/api";
+import { HealthResponse, ServerType } from "@/lib/api";
+import { checkHealth } from "@/lib/actions";
 
 interface HealthStatusProps {
   serverType: ServerType;
@@ -24,10 +25,14 @@ export function HealthStatus({ serverType }: HealthStatusProps) {
     error,
     isLoading,
     mutate,
-  } = useSWR<HealthResponse>(`${API_URLS[serverType]}/health`, {
-    refreshInterval: 30000, // Auto-refresh every 30 seconds
-    revalidateOnFocus: false,
-  });
+  } = useSWR<HealthResponse>(
+    ["health", serverType],
+    () => checkHealth(serverType),
+    {
+      refreshInterval: 30000, // Auto-refresh every 30 seconds
+      revalidateOnFocus: false,
+    },
+  );
 
   const getStatusIcon = (status: string) => {
     if (status === "healthy") {

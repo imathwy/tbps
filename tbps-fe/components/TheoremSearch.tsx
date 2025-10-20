@@ -44,11 +44,11 @@ import {
 } from "lucide-react";
 import {
   ServerType,
-  TheoremSearchAPI,
   TheoremResult,
   EXAMPLE_EXPRESSIONS,
   SimilarTheoremsResponse,
 } from "@/lib/api";
+import { findSimilarTheorems } from "@/lib/actions";
 
 // Form validation schema
 const searchSchema = z.object({
@@ -91,12 +91,14 @@ export function TheoremSearch({ serverType }: TheoremSearchProps) {
     setResults(null);
 
     try {
-      const api = new TheoremSearchAPI(serverType);
-      const response = await api.findSimilarTheorems({
-        expression: data.expression,
-        k: data.k,
-        node_ratio: data.node_ratio || undefined,
-      });
+      const response = await findSimilarTheorems(
+        {
+          expression: data.expression,
+          k: data.k,
+          node_ratio: data.node_ratio || undefined,
+        },
+        serverType,
+      );
       setResults(response);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");

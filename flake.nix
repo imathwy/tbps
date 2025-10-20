@@ -14,7 +14,10 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in {
         formatter = pkgs.alejandra;
-        devShells.default = import ./shell.nix {inherit pkgs;};
+        devShells.default = import ./pkgs/shell.nix {inherit pkgs;};
+        packages = {
+          tbps-be = import ./pkgs/tbps-be.nix {inherit pkgs;};
+        };
       }
     );
 }
