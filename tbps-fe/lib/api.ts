@@ -132,7 +132,7 @@ export const EXAMPLE_EXPRESSIONS = [
   },
   {
     name: "Set Union Commutativity",
-      expression: "∀ (α : Type) (A B : Set α), A ∪ B = B ∪ A",
+    expression: "∀ (α : Type) (A B : Set α), A ∪ B = B ∪ A",
   },
   {
     name: "Function Composition Associativity",
@@ -148,10 +148,10 @@ export const EXAMPLE_EXPRESSIONS = [
   },
   {
     name: "List Reverse Involutive",
-      expression: "∀ (α : Type) (l : List α), List.reverse (List.reverse l) = l",
+    expression: "∀ (α : Type) (l : List α), List.reverse (List.reverse l) = l",
   },
   {
     name: "Set Intersection Commutativity",
-      expression: "∀ (α : Type) (A B : Set α), A ∩ B = B ∩ A",
+    expression: "∀ (α : Type) (A B : Set α), A ∩ B = B ∩ A",
   },
 ];
