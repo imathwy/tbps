@@ -28,6 +28,7 @@ pkgs.mkShell {
     source .venv/bin/activate
     cd ..
 
+    export UV_PYTHON="${pkgs.python311}"
     export LD_LIBRARY_PATH="${pkgs.zlib}/lib:$LD_LIBRARY_PATH"
   '';
 }
